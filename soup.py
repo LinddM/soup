@@ -36,5 +36,5 @@ separator_parts = '============================='
 separator_items = '------------------------------------------'
 
 if __name__ == "__main__":
-    print('Lindsey')
+    print('Lindsey\n')
     print(portal.output)
