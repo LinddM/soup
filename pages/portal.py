@@ -1,20 +1,21 @@
+import urls as u
 import soup as s
 
 output = s.separator_parts + '1. Portal\n'
 
 # title
-output += 'Title:\n' + s.soup.title.string + s.separator_items
+output += 'Title:\n' + u.portal.title.string + s.separator_items
 
 # address
-output += 'Address:\n' + s.soup.find(id = 'footer').find('a').text + s.separator_items
+output += 'Address:\n' + u.portal.find(id = 'footer').find('a').text + s.separator_items
 
 # phone and email
-phone_and_email = s.soup.find(id = 'footer').find_all('a')
+phone_and_email = u.portal.find(id = 'footer').find_all('a')
 
 output += 'Phone and email:\n' + phone_and_email[1].text + '\n' + phone_and_email[2].text + s.separator_items
 
 # nav menu
-nav_menu = s.soup.find(id = 'menu-table').findAll('td')
+nav_menu = u.portal.find(id = 'menu-table').findAll('td')
 output += 'Nav menu items:\n'
 
 for i in nav_menu:
@@ -23,7 +24,7 @@ for i in nav_menu:
 output +=  s.separator_items
 
 # all links
-links = s.soup.find_all('a', href = True)
+links = u.portal.find_all('a', href = True)
 output += 'Links:\n'
 
 for i in links:
@@ -33,17 +34,17 @@ for i in links:
 output += s.separator_items
 
 # ufmail
-output += s.soup.find(id = 'ufmail_').text + ':\n' + s.soup.find(id = 'ufmail_')['href']
+output += u.portal.find(id = 'ufmail_').text + ':\n' + u.portal.find(id = 'ufmail_')['href']
 
 output += s.separator_items
 
 # miu
-output += s.soup.find(id = 'miu_').text + ':\n' + s.soup.find(id = 'miu_')['href']
+output += u.portal.find(id = 'miu_').text + ':\n' + u.portal.find(id = 'miu_')['href']
 
 output += s.separator_items
 
 # img
-images = s.soup.find_all('img')
+images = u.portal.find_all('img')
 
 output += 'Images:\n'
 
@@ -53,6 +54,6 @@ for i in images:
 output += s.separator_items
 
 # count <a>
-a_coincidences = s.soup.findAll('a')
+a_coincidences = u.portal.findAll('a')
 
 output += "Count <a>:\n" + str(len(a_coincidences))
