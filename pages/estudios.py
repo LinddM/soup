@@ -1,31 +1,52 @@
 import soup as s
+import urls as u
 from importlib import reload
 reload(s)
+reload(u)
 
 output = s.separator_parts + '2. Estudios\n'
 
-# checkbox 1 *to do
+# checkbox 1
 
 # topmenu items (8)
+top = u.estudios.find('div',{'id':'topmenu'}).find_all('a')
 output += 'Topmenu items:\n'
 
-topmenu = s.soup.find('div', {'class':'dsuperior'}).find_all('li')
-
-for i in topmenu:
+for i in top:
     output += ' - ' + i.text.strip() + '\n'
 
 output += s.separator_items
-# all estudios *to do
 
-# leftbar *to do
+# all estudios
+output += 'All estudios:\n'
 
-# social media links -- needs improvement --
-output += 'social media links:\n'
+all_estudios = u.estudios.findAll('div', {'class': 'estudios'})
 
-media = s.soup.find_all('div', {'class':'social'})[2].find_all('a')
-n = slice(0,5)
+for i in all_estudios:
+    output += ' - ' + i.text + '\n'
 
-for i in media[n]:
+output += s.separator_items
+
+# leftbar
+output += "Leftbar items:\n"
+left_items = u.estudios.find('div', {'class':'leftbar'}).find_all('li')
+
+for i in left_items:
+    output += ' - ' + i.text + '\n'
+
+output += s.separator_items
+
+# social media links
+output += 'Social media links:\n'
+
+social_media = u.estudios.find('div', {'class':'social pull-right'}).find_all('a')
+
+for i in social_media:
     output += ' - ' + i['href'] + '\n'
 
 output += s.separator_items
+
+# count <a>
+a_coincidences = u.estudios.findAll('a')
+
+output += "Count <a>:\n" + str(len(a_coincidences))
