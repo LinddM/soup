@@ -42,17 +42,18 @@ except:
 directorio = BeautifulSoup(html_content_directorio, "html.parser")
 
 
+# check number of lines in each part
+def noArgcheckLines(portal, estudios, cs, directorio):
+    lines = portal.count('\n') + estudios.count('\n') + cs.count('\n') + directorio.count('\n')
+    if lines > 30:
+        # do something here
+        return 'Output exceeds 30 lines, sending output to: <logfile>'
+    else:
+        return portal + estudios + cs + directorio
 
-## print entire html
-# print(soup.prettify())
-
-## print title (with tags)
-# print(soup.title)
-## # print title (without tags)
-# print(soup.title.string)
-
-'''
-for div in soup.find_all("div"):
-    print(div)
-    print("--------------------------")
-'''
+def checkLines(part):
+    if part.count('\n') > 30:
+        # do something here
+        return 'Output exceeds 30 lines, sending output to: <logfile>'
+    else:
+        return part

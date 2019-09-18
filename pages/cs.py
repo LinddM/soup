@@ -21,7 +21,7 @@ output += 'Title:\n' + u.cs.title.string + separator_items
 # download "FACULTAD de CIENCIAS ECONOMICAS" logo
 output += 'FACULTAD de CIENCIAS ECONOMICAS logo:\n'
 
-logo = u.cs.find('img', {'class':'fl-photo-img wp-image-500 size-full'})['src']
+#logo = u.cs.find('img', {'class':'fl-photo-img wp-image-500 size-full'})['src']
 try:
     urllib.request.urlretrieve(logo, os.path.basename(logo))
     output += 'Logo downloaded succesfully!\n' + separator_items
