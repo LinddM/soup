@@ -29,7 +29,19 @@ except:
     output += 'Unable to download logo\n' + separator_items
 
 # get <meta>: "title", "description" ("og")
+output += 'Get <meta> title and description:\n'
+
+meta_title = u.cs.find('meta', {'property':'og:title'})['content']
+meta_description = u.cs.find('meta', {'property':'og:description'})['content']
+
+output += meta_title + '\n' + meta_description + separator_items
 
 # count <a>
+a_coincidences = u.portal.findAll('a')
+
+output += "Count <a>:\n" + str(len(a_coincidences)) + separator_items
 
 # count <div>
+div_coincidences = u.portal.findAll('div')
+
+output += "Count <div>:\n" + str(len(div_coincidences))
