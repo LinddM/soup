@@ -32,6 +32,16 @@ except:
     sys.exit(1)
 cs = BeautifulSoup(html_content_cs, "html.parser")
 
+# Directorio page
+url_directorio="https://www.ufm.edu/Directorio"
+try:
+    html_content_directorio = requests.get(url_directorio).text
+except:
+    print(f"unable to get {url_directorio}")
+    sys.exit(1)
+directorio = BeautifulSoup(html_content_directorio, "html.parser")
+
+
 
 ## print entire html
 # print(soup.prettify())
