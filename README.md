@@ -145,7 +145,7 @@ python3 soup.py 3
 
 <br>
 
-- [ ] **NOTE** If for some reason the result exceeds 30 lines you will display `"Output exceeds 30 lines, sending output to: <logfile>"` and send the output to a text file inside logs/ , example format:
+- [x] **NOTE** If for some reason the result exceeds 30 lines you will display `"Output exceeds 30 lines, sending output to: <logfile>"` and send the output to a text file inside logs/ , example format:
 
 ```bash
 $ python3 soup.py 1
@@ -202,7 +202,7 @@ using ["http://ufm.edu/Portal"](http://ufm.edu/Portal)
 ## 2. Estudios
 using ["http://ufm.edu/Estudios"](http://ufm.edu/Estudios)
 
-- [ ] now navigate to  /Estudios (better if you obtain href from the DOM)
+- [x] now navigate to  /Estudios (better if you obtain href from the DOM)
 - [x] display all items from "topmenu" (8 in total)
 - [x] display ALL "Estudios" (Doctorados/Maestrias/Posgrados/Licenciaturas/Baccalaureus)
 - [x] display from "leftbar" all &lt;li> items (4 in total)
@@ -224,9 +224,9 @@ using ["https://fce.ufm.edu/carrera/cs/"](https://fce.ufm.edu/carrera/cs/)
 ## 4. Directorio
 using ["https://www.ufm.edu/Directorio"](https://www.ufm.edu/Directorio)
 
-- [ ] Sort all emails alphabetically (`href="mailto:arquitectura@ufm.edu"`) in a list, dump it to logs/4directorio_emails.txt
-- [ ] Count all emails that start with a vowel. (just display the count)
-- [ ] Group in a JSON all rows that have `Same Address` (dont use Room number) as address, dump it to logs/4directorio_address.json
+- [x] Sort all emails alphabetically (`href="mailto:arquitectura@ufm.edu"`) in a list, dump it to logs/4directorio_emails.txt
+- [x] Count all emails that start with a vowel. (just display the count)
+- [x] Group in a JSON all rows that have `Same Address` (dont use Room number) as address, dump it to logs/4directorio_address.json
 
 
 ```javascript
