@@ -51,7 +51,7 @@ def noArgcheckLines(portal, estudios, cs, directorio, text):
             f.write(output)
         f.close()
 
-        return f'Output exceeds 30 lines, sending output to: {text}.txt'
+        return f'Output exceeds 30 lines, sending output to: logs/{text}.txt'
     else:
         return output
 
@@ -61,6 +61,6 @@ def checkLines(part, num):
             f.write(part)
         f.close()
 
-        return f'Output exceeds 30 lines, sending output to: part{num}.txt'
+        return f'Output exceeds 30 lines, sending output to: logs/part{num}.txt'
     else:
         return part

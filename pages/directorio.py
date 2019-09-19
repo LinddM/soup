@@ -1,4 +1,5 @@
 import urls as u
+import re
 '''
 import soup as s
 from importlib import reload
@@ -12,6 +13,18 @@ separator_items = '\n-----------------------------------------------------------
 output = separator_parts + '4. Directorio\n'
 
 # sort emails and dump to logs/4directorio_emails.txt
+output += 'Sorted emails in logs/4directorio_emails.txt'
+mails = u.directorio.find_all('a', {'href':re.compile('@ufm.edu')})
+mails_text = []
+for i in mails:
+    mails_text.append(i.text)
+
+sorted_mails_list = list(dict.fromkeys(sorted(mails_text))) 
+
+with open('logs/4directorio_emails.txt', 'w') as dirm:
+    for i in sorted_mails_list:
+        dirm.write(' - ' + i + '\n')
+dirm.close()
 
 # count emails that start with a vowel
 
