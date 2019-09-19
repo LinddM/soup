@@ -14,7 +14,7 @@ portal = BeautifulSoup(html_content_portal, "html.parser")
 
 
 # Estudios page
-url_estudios="http://ufm.edu/Estudios"
+url_estudios=url_portal+portal.find('a',{'href':'/Estudios'})['href']
 try:
     html_content_estudios = requests.get(url_estudios).text
 except:
@@ -43,17 +43,24 @@ directorio = BeautifulSoup(html_content_directorio, "html.parser")
 
 
 # check number of lines in each part
-def noArgcheckLines(portal, estudios, cs, directorio):
+def noArgcheckLines(portal, estudios, cs, directorio, text):
     lines = portal.count('\n') + estudios.count('\n') + cs.count('\n') + directorio.count('\n')
+    output = portal + estudios + cs + directorio
     if lines > 30:
-        # do something here
-        return 'Output exceeds 30 lines, sending output to: <logfile>'
-    else:
-        return portal + estudios + cs + directorio
+        with open(f"logs/{text}.txt",'w') as f:
+            f.write(output)
+        f.close()
 
-def checkLines(part):
+        return f'Output exceeds 30 lines, sending output to: {text}.txt'
+    else:
+        return output
+
+def checkLines(part, num):
     if part.count('\n') > 30:
-        # do something here
-        return 'Output exceeds 30 lines, sending output to: <logfile>'
+        with open(f"logs/part{num}.txt", 'w') as f:
+            f.write(part)
+        f.close()
+
+        return f'Output exceeds 30 lines, sending output to: part{num}.txt'
     else:
         return part

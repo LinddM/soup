@@ -13,13 +13,13 @@ separator_items = '\n-----------------------------------------------------------
 if __name__ == "__main__":
     print('Lindsey\n')
     if len(sys.argv) == 1:
-        print(urls.noArgcheckLines(portal.output, estudios.output, cs.output, directorio.output))
+        print(urls.noArgcheckLines(portal.output, estudios.output, cs.output, directorio.output, "All_parts"))
     elif sys.argv[1] == '1':
-        print(urls.checkLines(portal.output))
+        print(urls.checkLines(portal.output, 1))
     elif sys.argv[1] == '2':
-        print(urls.checkLines(estudios.output))
+        print(urls.checkLines(estudios.output, 2))
     elif sys.argv[1] == '3':
-        print(urls.checkLines(cs.output))
+        print(urls.checkLines(cs.output, 3))
     else:
         print('invalid argument')
 
