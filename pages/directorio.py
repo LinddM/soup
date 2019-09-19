@@ -55,7 +55,7 @@ def getAddress (table):
                 address = j.text.strip().split(',')[0]
             count += 1
 
-        if (address in keys):
+        if address in keys:
             office.get(address).append(page)
         else:
             keys.append(address)
@@ -70,6 +70,34 @@ with open('logs/4directorio_address.json', 'w') as addr:
     addr.write(getAddress(table2))
     addr.close()
 
-# JSON : Faculty Dean and Directors, and dump to logs/4directorio_deans.json
+output += 'Rows with same address in logs/4directorio_address.json' + separator_items
 
+# JSON : Faculty Dean and Directors, and dump to logs/4directorio_deans.json
+dean_and_directors = u.directorio.find_all('table',{'class':'tabla ancho100 col3'})[1].find_all('tr')
+faculty = {}
+
+for i in dean_and_directors:
+    count = 0
+    tdlist = i.find_all('td')
+    fclty = ''
+    name = ''
+    email = ''
+
+    for j in tdlist:
+        if count == 0:
+            fclty = j.text.strip()
+        if count == 1:
+            name = j.text.strip().split(',')[0]
+        if count == 2:
+            email = j.text.strip()
+        count += 1
+    
+    profile = {'Dean/Director':f'{name}', 'email':f'{email}'}
+    faculty[fclty] = profile
+    
+with open('logs/4directorio_deans.json', 'w') as profs:
+    profs.write(json.dumps(faculty, indent=4, sort_keys=True))
+    profs.close()
+
+output += 'Faculty Dean and Directors in logs/4directorio_deans.json'
 # directory of all 3 column table and generate a CSV, and dump to logs/4directorio_3column_tables.csv
