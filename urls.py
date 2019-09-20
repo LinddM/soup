@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests,sys,csv,json
+import datetime
 
 # Portal Page
 url_portal="http://ufm.edu/Portal"
@@ -51,7 +52,7 @@ def noArgcheckLines(portal, estudios, cs, directorio, text):
             f.write(output)
         f.close()
 
-        return f'Output exceeds 30 lines, sending output to: logs/{text}.txt'
+        return f'Output exceeds 30 lines, sending output to: logs/{text}.txt\nDate of generation: {datetime.datetime.now()}\n=============================================================================================================\nUnivesidad Francisco Marroquin'
     else:
         return output
 
@@ -61,6 +62,6 @@ def checkLines(part, num):
             f.write(part)
         f.close()
 
-        return f'Output exceeds 30 lines, sending output to: logs/part{num}.txt'
+        return f'Output exceeds 30 lines, sending output to: logs/part{num}.txt\nDate of generation: {datetime.datetime.now()}\n=============================================================================================================\nUnivesidad Francisco Marroquin'
     else:
         return part
