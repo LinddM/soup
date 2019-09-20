@@ -6,8 +6,6 @@ reload(u)
 
 output = s.separator_parts + '2. Estudios\n'
 
-# checkbox 1
-
 # topmenu items (8)
 top = u.estudios.find('div',{'id':'topmenu'}).find_all('a')
 output += 'Topmenu items:\n'
