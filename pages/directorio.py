@@ -1,6 +1,7 @@
 import urls as u
 import re
 import json
+import csv
 '''
 import soup as s
 from importlib import reload
@@ -100,4 +101,32 @@ with open('logs/4directorio_deans.json', 'w') as profs:
     profs.close()
 
 output += 'Faculty Dean and Directors in logs/4directorio_deans.json'
+
 # directory of all 3 column table and generate a CSV, and dump to logs/4directorio_3column_tables.csv
+array = []
+three_column_table = u.directorio.findAll('table',{'class':'tabla ancho100 col3'})
+for i in three_column_table:
+    individual_table = i.find_all('tr')
+    for j in individual_table:
+        tdlist = j.find_all('td')
+        column1 = ''
+        column2 = ''
+        column3 = ''
+
+        count = 0
+        for k in tdlist:
+            if count == 0:
+                column1 = k.text.strip()
+            if count == 1:
+                column2 = k.text.strip().split(',')[0]
+            if count == 2:
+                column3 = k.text.strip()
+            count += 1
+        data = {'Entity':f'{column1}', 'FullName':f'{column2}', 'Email':f'{column3}'}
+        array.append(data)
+
+keys_csv = array[0].keys()
+with open('logs/4directorio_3column_tables.csv', 'w') as output_file:
+    dict_writer = csv.DictWriter(output_file, keys_csv)
+    dict_writer.writeheader()
+    dict_writer.writerows(array)

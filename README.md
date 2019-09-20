@@ -252,7 +252,7 @@ using ["https://www.ufm.edu/Directorio"](https://www.ufm.edu/Directorio)
 }
 ```
 
-- [ ] Try to correlate in a JSON Faculty Dean and Directors, and dump it to `logs/4directorio_deans.json`
+- [x] Try to correlate in a JSON Faculty Dean and Directors, and dump it to `logs/4directorio_deans.json`
 
 ```javascript
 {
@@ -272,7 +272,7 @@ using ["https://www.ufm.edu/Directorio"](https://www.ufm.edu/Directorio)
 }
 ```
 
-- [ ] GET the directory of all 3 column table and generate a CSV with these columns (Entity,FullName, Email), and dump it to `logs/4directorio_3column_tables.csv`
+- [x] GET the directory of all 3 column table and generate a CSV with these columns (Entity,FullName, Email), and dump it to `logs/4directorio_3column_tables.csv`
 
 | Entity        	| FullName                	| Email            	|
 |---------------	|-------------------------	|------------------	|
