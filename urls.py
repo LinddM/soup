@@ -15,7 +15,7 @@ portal = BeautifulSoup(html_content_portal, "html.parser")
 
 
 # Estudios page
-url_estudios=url_portal+portal.find('a',{'href':'/Estudios'})['href']
+url_estudios='https://www.ufm.edu/Estudios'
 try:
     html_content_estudios = requests.get(url_estudios).text
 except:

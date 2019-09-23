@@ -1,50 +1,48 @@
-import soup as s
-import urls as u
-from importlib import reload
-reload(s)
-reload(u)
+def estudios (url, separator_items, separator_parts):
 
-output = s.separator_parts + '2. Estudios\n'
+    output = separator_parts + '2. Estudios\n'
 
-# topmenu items (8)
-top = u.estudios.find('div',{'id':'topmenu'}).find_all('a')
-output += 'Topmenu items:\n'
+    # topmenu items (8)
+    top = url.find('div',{'id':'topmenu'}).find_all('a')
+    output += 'Topmenu items:\n'
 
-for i in top:
-    output += ' - ' + i.text.strip() + '\n'
+    for i in top:
+        output += ' - ' + i.text.strip() + '\n'
 
-output += s.separator_items
+    output += separator_items
 
-# all estudios
-output += 'All estudios:\n'
+    # all estudios
+    output += 'All estudios:\n'
 
-all_estudios = u.estudios.findAll('div', {'class': 'estudios'})
+    all_estudios = url.findAll('div', {'class': 'estudios'})
+    
+    for i in all_estudios:
+        output += ' - ' + i.text + '\n'
 
-for i in all_estudios:
-    output += ' - ' + i.text + '\n'
+    output += separator_items
 
-output += s.separator_items
+    # leftbar
+    output += "Leftbar items:\n"
+    left_items = url.find('div', {'class':'leftbar'}).find_all('li')
 
-# leftbar
-output += "Leftbar items:\n"
-left_items = u.estudios.find('div', {'class':'leftbar'}).find_all('li')
+    for i in left_items:
+        output += ' - ' + i.text + '\n'
 
-for i in left_items:
-    output += ' - ' + i.text + '\n'
+    output += separator_items
 
-output += s.separator_items
+    # social media links
+    output += 'Social media links:\n'
 
-# social media links
-output += 'Social media links:\n'
+    social_media = url.find('div', {'class':'social pull-right'}).find_all('a')
 
-social_media = u.estudios.find('div', {'class':'social pull-right'}).find_all('a')
+    for i in social_media:
+        output += ' - ' + i['href'] + '\n'
 
-for i in social_media:
-    output += ' - ' + i['href'] + '\n'
+    output += separator_items
 
-output += s.separator_items
+    # count <a>
+    a_coincidences = url.findAll('a')
 
-# count <a>
-a_coincidences = u.estudios.findAll('a')
+    output += "Count <a>:\n" + str(len(a_coincidences))
 
-output += "Count <a>:\n" + str(len(a_coincidences))
+    return output

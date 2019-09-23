@@ -1,45 +1,42 @@
-import urls as u
 import urllib
 import os
-'''
-import soup as s
-from importlib import reload
-reload(s)
-reload(u)
-'''
 
-separator_parts = '\n=============================================================================================================\n'
-separator_items = '\n-------------------------------------------------------------------------------------------------------------\n'
+def cs(url, separator_items, separator_parts):
 
-# title
-output = separator_parts + '3. CS\n'
+    separator_parts = '\n=============================================================================================================\n'
+    separator_items = '\n-------------------------------------------------------------------------------------------------------------\n'
 
-output += 'Title:\n' + u.cs.title.string + separator_items
+    # title
+    output = separator_parts + '3. CS\n'
 
-# download "FACULTAD de CIENCIAS ECONOMICAS" logo
-output += 'FACULTAD de CIENCIAS ECONOMICAS logo:\n'
+    output += 'Title:\n' + url.title.string + separator_items
 
-logo = u.cs.find('img', {'class':'fl-photo-img wp-image-500 size-full'})['src']
-try:
-    urllib.request.urlretrieve(logo, os.path.basename(logo))
-    output += 'Logo downloaded succesfully!\n' + separator_items
-except:
-    output += 'Unable to download logo\n' + separator_items
+    # download "FACULTAD de CIENCIAS ECONOMICAS" logo
+    output += 'FACULTAD de CIENCIAS ECONOMICAS logo:\n'
 
-# get <meta>: "title", "description" ("og")
-output += 'Get <meta> title and description:\n'
+    logo = url.find('img', {'class':'fl-photo-img wp-image-500 size-full'})['src']
+    try:
+        urllib.request.urlretrieve(logo, os.path.basename(logo))
+        output += 'Logo downloaded succesfully!\n' + separator_items
+    except:
+        output += 'Unable to download logo\n' + separator_items
 
-meta_title = u.cs.find('meta', {'property':'og:title'})['content']
-meta_description = u.cs.find('meta', {'property':'og:description'})['content']
+    # get <meta>: "title", "description" ("og")
+    output += 'Get <meta> title and description:\n'
 
-output += meta_title + '\n' + meta_description + separator_items
+    meta_title = url.find('meta', {'property':'og:title'})['content']
+    meta_description = url.find('meta', {'property':'og:description'})['content']
 
-# count <a>
-a_coincidences = u.portal.findAll('a')
+    output += meta_title + '\n' + meta_description + separator_items
 
-output += "Count <a>:\n" + str(len(a_coincidences)) + separator_items
+    # count <a>
+    a_coincidences = url.findAll('a')
 
-# count <div>
-div_coincidences = u.portal.findAll('div')
+    output += "Count <a>:\n" + str(len(a_coincidences)) + separator_items
 
-output += "Count <div>:\n" + str(len(div_coincidences))
+    # count <div>
+    div_coincidences = url.findAll('div')
+
+    output += "Count <div>:\n" + str(len(div_coincidences))
+
+    return output

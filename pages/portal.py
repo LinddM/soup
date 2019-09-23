@@ -1,59 +1,60 @@
-import urls as u
-import soup as s
+def portal (url, separator_items, separator_parts):
 
-output = s.separator_parts + '1. Portal\n'
+    output = separator_parts + '1. Portal\n'
 
-# title
-output += 'Title:\n' + u.portal.title.string + s.separator_items
+    # title
+    output += 'Title:\n' + url.title.string + separator_items
 
-# address
-output += 'Address:\n' + u.portal.find(id = 'footer').find('a').text + s.separator_items
+    # address
+    output += 'Address:\n' + url.find(id = 'footer').find('a').text + separator_items
 
-# phone and email
-phone_and_email = u.portal.find(id = 'footer').find_all('a')
+    # phone and email
+    phone_and_email = url.find(id = 'footer').find_all('a')
 
-output += 'Phone and email:\n' + phone_and_email[1].text + '\n' + phone_and_email[2].text + s.separator_items
+    output += 'Phone and email:\n' + phone_and_email[1].text + '\n' + phone_and_email[2].text + separator_items
 
-# nav menu
-nav_menu = u.portal.find(id = 'menu-table').findAll('td')
-output += 'Nav menu items:\n'
+    # nav menu
+    nav_menu = url.find(id = 'menu-table').findAll('td')
+    output += 'Nav menu items:\n'
 
-for i in nav_menu:
-    output += ' - ' + i.text.strip() + '\n'
-
-output +=  s.separator_items
-
-# all links
-links = u.portal.find_all('a', href = True)
-output += 'Links:\n'
-
-for i in links:
-    if i.text.isalpha() == True:
+    for i in nav_menu:
         output += ' - ' + i.text.strip() + '\n'
 
-output += s.separator_items
+    output +=  separator_items
 
-# ufmail
-output += u.portal.find(id = 'ufmail_').text + ':\n' + u.portal.find(id = 'ufmail_')['href']
+    # all links
+    links = url.find_all('a', href = True)
+    output += 'Links:\n'
 
-output += s.separator_items
+    for i in links:
+        if i.text.isalpha() == True:
+            output += ' - ' + i.text.strip() + '\n'
 
-# miu
-output += u.portal.find(id = 'miu_').text + ':\n' + u.portal.find(id = 'miu_')['href']
+    output += separator_items
 
-output += s.separator_items
+    # ufmail
+    output += url.find(id = 'ufmail_').text + ':\n' + url.find(id = 'ufmail_')['href']
 
-# img
-images = u.portal.find_all('img')
+    output += separator_items
 
-output += 'Images:\n'
+    # miu
+    output += url.find(id = 'miu_').text + ':\n' + url.find(id = 'miu_')['href']
 
-for i in images:
-    output += ' - ' + i['src'] +'\n'
+    output += separator_items
 
-output += s.separator_items
+    # img
+    images = url.find_all('img')
 
-# count <a>
-a_coincidences = u.portal.findAll('a')
+    output += 'Images:\n'
 
-output += "Count <a>:\n" + str(len(a_coincidences))
+    for i in images:
+        output += ' - ' + i['src'] +'\n'
+
+    output += separator_items
+
+    # count <a>
+    a_coincidences = url.findAll('a')
+
+    output += "Count <a>:\n" + str(len(a_coincidences))
+
+    return output
