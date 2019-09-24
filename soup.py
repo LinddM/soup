@@ -3,6 +3,7 @@ import pages.portal as portal
 import pages.estudios as estudios
 import pages.cs as cs
 import pages.directorio as directorio
+import pages.extra as extra
 import urls
 
 import sys
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     print('Lindsey\n')
     if len(sys.argv) == 1:
         print(urls.noArgcheckLines(port, studies, comp_sci, directory, "All_parts"))
+        extra.extra(urls.portal)
     elif sys.argv[1] == '1':
         print(urls.checkLines(port, 1))
     elif sys.argv[1] == '2':
